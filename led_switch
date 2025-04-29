@@ -1,0 +1,13 @@
+#include <reg51.h>
+
+sbit switch_pin = P1^0;
+sbit LED_pin = P2^0;
+
+void main(void) {
+    while (1) {
+        if (switch_pin == 0)
+            LED_pin = 0;
+        else
+            LED_pin = 1;
+    }
+}
