@@ -1,0 +1,20 @@
+#include <reg51.h>
+
+void Delay(void);
+
+void main(void) {
+    P0 = 0xFF;
+    Delay();
+    P0 = 0x00;
+    Delay();
+}
+
+void Delay(void) {
+    TMOD = 0x01;
+    TH0 = 0xDC;
+    TL0 = 0x00;
+    TR0 = 1;
+    while (TF0 == 0);
+    TR0 = 0;
+    TF0 = 0;
+}
