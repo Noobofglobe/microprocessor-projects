@@ -1,0 +1,40 @@
+ORG 0000H
+MOV R1, #04H
+MOV DPTR, #4000H
+
+SKIP:  MOVX A, @DPTR
+       INC DPTR
+       MOVX A, @DPTR
+       CJNE A, B, LI
+LI:    JC LOOP
+       MOV A, B
+LOOP:  MOV R3, A
+       DJNZ R1, SKIP
+       INC DPTR
+       MOV A, R3
+       MOVX @DPTR, A
+L4:    SJMP L4
+END
+
+-----------------------------------------------
+
+
+
+
+ORG 0000H
+MOV R1, #04H
+MOV DPTR, #4000H
+
+SKIP:  MOVX A, @DPTR
+       INC DPTR
+       MOVX A, @DPTR
+       CJNE A, B, LI
+LI:    JNC LOOP
+       MOV A, B
+LOOP:  MOV R3, A
+       DJNZ R1, SKIP
+       INC DPTR
+       MOV A, R3
+       MOVX @DPTR, A
+L4:    SJMP L4
+END
